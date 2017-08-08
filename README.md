@@ -6,7 +6,8 @@ C++ application server for the subject Programming Workshop 2 (Taller de Program
 appserver
 |  .git
 |  .gitignore
-|  Dockerfile
+|  Dockerfile.dev
+|  Dockerfile.prod
 |  generate-eclipse-files.sh
 |
 |  build/
@@ -30,13 +31,11 @@ appserver
 ## Deploying Docker Container
 ```
 # Building and deploying development environment
-appserver$ export APPSERVER_TARGET_ENV=dev
-appserver$ docker build -t fiuba/appserver:dev
-appserver$ docker run -it fiuba/appserver:dev
+appserver$ docker build -f Dockerfile.dev -t fiuba/appserver:dev
+appserver$ docker run -p 8080:8080 -it fiuba/appserver:dev
 
 # Building production environment
-appserver$ export APPSERVER_TARGET_ENV=prod
-appserver$ docker build -t fiuba/appserver:prod
+appserver$ docker build -f Dockerfile.prod -t fiuba/appserver:prod
 ```
 
 ## Building and Running Locally (no container, assuming Ubuntu)
