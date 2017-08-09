@@ -31,11 +31,11 @@ appserver
 ## Deploying Docker Container
 ```
 # Building and deploying development environment
-appserver$ docker build -f Dockerfile.dev -t fiuba/appserver:dev
+appserver$ docker build -f Dockerfile.dev -t fiuba/appserver:dev .
 appserver$ docker run -p 8080:8080 -it fiuba/appserver:dev
 
 # Building production environment
-appserver$ docker build -f Dockerfile.prod -t fiuba/appserver:prod
+appserver$ docker build -f Dockerfile.prod -t fiuba/appserver:prod .
 ```
 
 ## Building and Running Locally (no container, assuming Ubuntu)
