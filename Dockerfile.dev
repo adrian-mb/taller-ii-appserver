@@ -1,0 +1,30 @@
+# Based on Ubuntu 16.04 Xenial
+FROM ubuntu:xenial
+
+# Install required tooling
+RUN apt-get update && apt-get install -y g++ make cmake
+
+# Install and configure additional dev requirements (i.e. database)
+#
+
+# Define environment variables
+ENV APPSERVER /appserver
+ENV APPSERVER_CFG ${APPSERVER}/config
+ENV APPSERVER_BIN ${APPSERVER}/bin
+
+# Copy required files into container
+COPY ./build ${APPSERVER}
+COPY ./runtime/config/dev ${APPSERVER_CFG}
+
+# Change into appserver directory
+# Build scripts must be executed in there
+WORKDIR ${APPSERVER}
+
+# Clean and build application server
+RUN ./clean.sh && ./build.sh
+
+# Open ports
+EXPOSE 8080
+
+# Run application
+RUN ${APPSERVER_BIN}/appserver
