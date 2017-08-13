@@ -1,0 +1,3 @@
+[submodule "build/src/webserver"]
+	path = build/src/webserver
+	url = https://github.com/adrian-mb/mongoose-restapi-wrapper.git
